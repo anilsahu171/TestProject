@@ -43,6 +43,7 @@ pipeline {
        
                 success {
 					emailext(
+						attachmentsPattern: '**/SparkReport.html',
 						to: 'anilsahu171@gmail.com',
 						subject: "Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
 						body:"""
@@ -115,4 +116,5 @@ pipeline {
 						
 			}
 	 }		
+				
 				
