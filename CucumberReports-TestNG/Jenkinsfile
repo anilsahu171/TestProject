@@ -2,7 +2,7 @@ pipeline {
     agent any
  
  tools{
-	mavem 'maven-3.9.14'
+	maven 'MAVEN_HOME'
  }
     stages {
 		
@@ -14,13 +14,15 @@ pipeline {
 		
 		stage('Build') {
             steps {
-                bat "mvn clean install"
+                bat "mvn -f CucumberReports-TestNG/pom.xml clean install"
             }
+         }
             
         stage('Test') {
             steps {
-                bat "mvn test"
+                bat "mvn -f CucumberReports-TestNG/pom.xml test"
             }
+         }
             
         stage('Reports') {
             steps {
@@ -35,14 +37,14 @@ pipeline {
 
           post {                	
 			always{
-					archiveArtifacts artifacts: '**/src/test/resources/ExtentReport/*.html', fingerprint: true,
-					junit 'target/surefire-reports/*.xml'
+					archiveArtifacts artifacts: '**/CucumberReports-TestNG/target/cucumber-reports/SparkReport/*.html', fingerprint: true
+					junit 'CucumberReports-TestNG/target/surefire-reports/*.xml'
 				}
        
                 success {
-					emailext{
+					emailext(
 						to: 'anilsahu171@gmail.com',
-						subject: "Build Suceess: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+						subject: "Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
 						body:"""
 						<html>
 						<body>
@@ -61,7 +63,7 @@ pipeline {
 						
 						<p><b>Build log is attached.</b></p>
 						
-						<p><b>Extent Report:</b> <a href="http://localhost:8080/job/OrangeHRM_Build/HTML_20Extent_20Report/">Click here</a></p>
+						<p><b>Extent Report:</b> <a href="${env.BUILD_URL}artifact/CucumberReports-TestNG/target/cucumber-reports/SparkReport/Spark_02.html/">Click here</a></p>
 						
 						
 					 	<p><b>Best Regards,</b></p>
@@ -71,11 +73,11 @@ pipeline {
 						""",
 						mimeType: 'text/html',
 						attachLog: true
-						}
+						)
 				  }
 						
 				 failure {
-					emailext{
+					emailext(
 						to: 'anilsahu171@gmail.com',
 						subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
 						body:"""
@@ -98,7 +100,7 @@ pipeline {
 						
 						<p><b>Please check the logs and take necessary actions.</b></p>
 						
-						<p><b>Extent Report (if available):</b> <a href="http://localhost:8080/job/OrangeHRM_Build/HTML_20Extent_20Report/">Click here</a></p>
+						<p><b>Extent Report (if available):</b> <a href="http://localhost:8080/job/Automation_Pipeline/HTML_20Extent_20Report/">Click here</a></p>
 						
 						
 					 	<p><b>Best Regards,</b></p>
@@ -108,9 +110,9 @@ pipeline {
 						""",
 						mimeType: 'text/html',
 						attachLog: true
-						}
+						)
 					}
 						
-				}
-	   }		
+			}
+	 }		
 				
