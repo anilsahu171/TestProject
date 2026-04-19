@@ -25,8 +25,8 @@ pipeline {
         stage('Reports') {
             steps {
                 publishHTML ( target: [
-					reportDir: 'CucumberReports-TestNG/src/test/resources/ExtentReport',
-					reportFiles: 'ExtentReport.html',
+					reportDir: 'CucumberReports-TestNG/target/cucumber-reports/SparkReport',
+					reportFiles: 'Spark_02.html',
 					reportName: 'Extent Spark Report'		
 				])						
 		     } 
