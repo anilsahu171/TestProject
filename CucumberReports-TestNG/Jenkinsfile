@@ -43,7 +43,6 @@ pipeline {
        
                 success {
 					emailext(
-						attachmentsPattern: '**/SparkReport.html',
 						to: 'anilsahu171@gmail.com',
 						subject: "Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
 						body:"""
@@ -101,7 +100,7 @@ pipeline {
 						
 						<p><b>Please check the logs and take necessary actions.</b></p>
 						
-						<p><b>Extent Report (if available):</b> <a href="http://localhost:8080/job/Automation_Pipeline/HTML_20Extent_20Report/">Click here</a></p>
+						<p><b>Extent Report (if available):</b> <a href="${env.BUILD_URL}artifact/CucumberReports-TestNG/target/cucumber-reports/SparkReport/Spark_02.html">Click here</a></p>
 						
 						
 					 	<p><b>Best Regards,</b></p>
