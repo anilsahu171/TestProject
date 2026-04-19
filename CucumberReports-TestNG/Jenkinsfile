@@ -14,7 +14,7 @@ pipeline {
 		
 		stage('Build') {
             steps {
-                bat "mvn -f ../CucumberReports-TestNG/pom.xml clean install"
+                bat "mvn -f CucumberReports-TestNG/pom.xml clean install"
             }
          }
             
