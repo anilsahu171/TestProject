@@ -38,7 +38,7 @@ pipeline {
           post {                	
 			always{
 					archiveArtifacts artifacts: '**/CucumberReports-TestNG/target/cucumber-reports/SparkReport/*.html', fingerprint: true
-					//junit 'CucumberReports-TestNG/target/surefire-reports/*.xml'
+					junit 'CucumberReports-TestNG/target/surefire-reports/*.xml'
 				}
        
                 success {
