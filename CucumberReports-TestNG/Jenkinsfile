@@ -16,11 +16,13 @@ pipeline {
             steps {
                 bat "mvn clean install"
             }
+         }
             
         stage('Test') {
             steps {
                 bat "mvn test"
             }
+         }
             
         stage('Reports') {
             steps {
@@ -111,6 +113,6 @@ pipeline {
 						)
 					}
 						
-				}
-	   }		
+			}
+	 }		
 				
