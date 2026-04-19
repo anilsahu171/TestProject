@@ -64,7 +64,7 @@ pipeline {
 						
 						<p><b>Build log is attached.</b></p>
 						
-						<p><b>Extent Report:</b> <a href="${env.BUILD_URL}/HTML_20Extent_20Report/">Click here</a></p>
+						<p><b>Extent Report:</b> <a href="${env.BUILD_URL}artifact/CucumberReports-TestNG/target/cucumber-reports/SparkReport/Spark_02.html/">Click here</a></p>
 						
 						
 					 	<p><b>Best Regards,</b></p>
