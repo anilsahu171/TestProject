@@ -40,7 +40,7 @@ pipeline {
 				}
        
                 success {
-					emailext{
+					emailext(
 						to: 'anilsahu171@gmail.com',
 						subject: "Build Suceess: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
 						body:"""
@@ -71,11 +71,11 @@ pipeline {
 						""",
 						mimeType: 'text/html',
 						attachLog: true
-						}
+						)
 				  }
 						
 				 failure {
-					emailext{
+					emailext(
 						to: 'anilsahu171@gmail.com',
 						subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
 						body:"""
@@ -108,7 +108,7 @@ pipeline {
 						""",
 						mimeType: 'text/html',
 						attachLog: true
-						}
+						)
 					}
 						
 				}
