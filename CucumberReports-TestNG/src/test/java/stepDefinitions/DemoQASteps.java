@@ -80,7 +80,7 @@ public class DemoQASteps {
 
 	@Then("validate yes radio is selected")
 	public void validate_yes_radio_is_selected() {
-		Assert.assertEquals("Yes1", driver.findElement(By.xpath("//p/span")).getText());
+		Assert.assertEquals("Yes", driver.findElement(By.xpath("//p/span")).getText());
 	}
 
 }
